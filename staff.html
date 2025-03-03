@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลบุคลากร - สถานศึกษาของเรา</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* ส่วนหัว */
+        header {
+            background-color: #00274c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .school-name {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .school-slogan {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        
+        /* ส่วนเนื้อหา */
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            min-height: 500px;
+        }
+        
+        .page-title {
+            color: #00274c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcb05;
+        }
+        
+        /* รายละเอียดข้อมูล */
+        .staff-intro {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .department-section {
+            margin-bottom: 40px;
+        }
+        
+        .department-title {
+            background-color: #00274c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .person-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .person-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .person-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid #ffcb05;
+        }
+        
+        .person-card h3 {
+            color: #00274c;
+            margin-bottom: 5px;
+        }
+        
+        .person-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .staff-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2rem;
+            color: #00274c;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: #555;
+        }
+        
+        /* ส่วนท้าย */
+        footer {
+            background-color: #00274c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #ffcb05;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #ffcb05;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* รองรับอุปกรณ์มือถือ */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .staff-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ส่วนหัวของทุกหน้า -->
+    <header>
+        <h1 class="school-name">สถานศึกษาของเรา</h1>
+        <p class="school-slogan">มุ่งมั่นสู่ความเป็นเลิศทางวิชาการและคุณธรรม</p>
+    </header>
+    
+    <!-- เมนูนำทาง -->
+    <nav>
+        <ul>
+            <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+        </ul>
+    </nav>
+    
+    <!-- ส่วนเนื้อหา -->
+    <main>
+        <h2 class="page-title">ข้อมูลบุคลากร</h2>
+        
+        <div class="staff-intro">
+            <p>บุคลากรของสถานศึกษาของเราประกอบด้วยคณาจารย์ผู้ทรงคุณวุฒิและเจ้าหน้าที่ที่มีความเชี่ยวชาญในสาขาต่างๆ รวมกว่า 150 คน ทุกคนมุ่งมั่นทำงานอย่างเต็มกำลังความสามารถเพื่อสร้างสรรค์การศึกษาที่มีคุณภาพให้แก่นักศึกษาของเรา</p>
+        </div>
+        
+        <div class="staff-stats">
+            <div class="stat-item">
+                <h3>85</h3>
+                <p>คณาจารย์</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>45</h3>
+                <p>เจ้าหน้าที่สนับสนุน</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>20</h3>
+                <p>เจ้าหน้าที่บริหาร</p>
+            </div>
+            
+            <div class="stat-item">
+                <h3>75%</h3>
+                <p>คุณวุฒิปริญญาโทขึ้นไป</p>
+            </div>
+        </div>
+        
+        <div class="department-section">
+            <h3 class="department-title">ฝ่ายวิชาการ</h3>
+            
+            <div class="person-cards">
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาวิทยาศาสตร์">
+                    <h3>ดร.วิทยา ค้นคว้า</h3>
+                    <p>หัวหน้าสาขาวิทยาศาสตร์</p>
+                    <p>ปริญญาเอกด้านเคมี</p>
+                    <p><a href="mailto:wittaya@school.ac.th">wittaya@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาคณิตศาสตร์">
+                    <h3>ผศ.คำนวณ แม่นยำ</h3>
+                    <p>หัวหน้าสาขาคณิตศาสตร์</p>
+                    <p>ปริญญาโทด้านคณิตศาสตร์ประยุกต์</p>
+                    <p><a href="mailto:kamnuan@school.ac.th">kamnuan@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาภาษา">
+                    <h3>อ.พูดดี มีความรู้</h3>
+                    <p>หัวหน้าสาขาภาษา</p>
+                    <p>ปริญญาโทด้านภาษาศาสตร์</p>
+                    <p><a href="mailto:poodee@school.ac.th">poodee@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาเทคโนโลยี">
+                    <h3>อ.เทคโน ล้ำสมัย</h3>
+                    <p>หัวหน้าสาขาเทคโนโลยีสารสนเทศ</p>
+                    <p>ปริญญาโทด้านวิทยาการคอมพิวเตอร์</p>
+                    <p><a href="mailto:techno@school.ac.th">techno@school.ac.th</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="department-section">
+            <h3 class="department-title">ฝ่ายสนับสนุนการศึกษา</h3>
+            
+            <div class="person-cards">
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายทะเบียน">
+                    <h3>นางบันทึก เรียบร้อย</h3>
+                    <p>หัวหน้าฝ่ายทะเบียน</p>
+                    <p>ปริญญาตรีด้านบริหาร</p>
+                    <p><a href="mailto:bantuk@school.ac.th">bantuk@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายการเงิน">
+                    <h3>นางสาวเก็บเงิน มั่งมี</h3>
+                    <p>หัวหน้าฝ่ายการเงิน</p>
+                    <p>ปริญญาตรีด้านการบัญชี</p>
+                    <p><a href="mailto:kebngern@school.ac.th">kebngern@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายห้องสมุด">
+                    <h3>นางสาวหนังสือ รักการอ่าน</h3>
+                    <p>บรรณารักษ์</p>
+                    <p>ปริญญาโทด้านบรรณารักษศาสตร์</p>
+                    <p><a href="mailto:nungsue@school.ac.th">nungsue@school.ac.th</a></p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายอาคารสถานที่">
+                    <h3>นายดูแล รักษาดี</h3>
+                    <p>หัวหน้าฝ่ายอาคารสถานที่</p>
+                    <p>ปริญญาตรีด้านวิศวกรรมโยธา</p>
+                    <p><a href="mailto:duarl@school.ac.th">duarl@school.ac.th</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- ส่วนท้ายของทุกหน้า -->
+    <footer>
+        <div

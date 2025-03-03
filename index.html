@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถานศึกษาของเรา</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* ส่วนหัว */
+        header {
+            background-color: #00274c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .school-name {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .school-slogan {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        
+        /* ส่วนเนื้อหา */
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            min-height: 500px;
+        }
+        
+        .page-title {
+            color: #00274c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcb05;
+        }
+        
+        /* หน้าแรก */
+        .hero-banner {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .featured-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            color: #00274c;
+            margin-bottom: 10px;
+        }
+        
+        /* รายละเอียดข้อมูล */
+        .person-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .person-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .person-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid #ffcb05;
+        }
+        
+        .person-card h3 {
+            color: #00274c;
+            margin-bottom: 5px;
+        }
+        
+        .person-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* ข้อมูลการศึกษา */
+        .education-programs {
+            margin-top: 20px;
+        }
+        
+        .program-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .program-card h3 {
+            color: #00274c;
+            margin-bottom: 10px;
+            border-left: 5px solid #ffcb05;
+            padding-left: 10px;
+        }
+        
+        .program-card .program-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .program-card .detail-item {
+            background-color: #e6f7ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* ส่วนท้าย */
+        footer {
+            background-color: #00274c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #ffcb05;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #ffcb05;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* รองรับอุปกรณ์มือถือ */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ส่วนหัวของทุกหน้า -->
+    <header>
+        <h1 class="school-name">สถานศึกษาของเรา</h1>
+        <p class="school-slogan">มุ่งมั่นสู่ความเป็นเลิศทางวิชาการและคุณธรรม</p>
+    </header>
+    
+    <!-- เมนูนำทาง -->
+    <nav>
+        <ul>
+            <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+        </ul>
+    </nav>
+    
+    <!-- ส่วนเนื้อหา (จะเปลี่ยนตามหน้า) -->
+    <main id="main-content">
+        <!-- หน้าหลัก (Home) -->
+        <div id="home" class="page-content">
+            <div class="hero-banner">
+                <h2>ยินดีต้อนรับสู่สถานศึกษาของเรา</h2>
+                <p>แหล่งเรียนรู้และพัฒนาทักษะเพื่ออนาคตที่สดใส มุ่งสร้างผู้นำแห่งอนาคตด้วยคุณภาพการศึกษาและคุณธรรม</p>
+            </div>
+            
+            <h2 class="page-title">ข่าวสารและกิจกรรมล่าสุด</h2>
+            
+            <div class="featured-content">
+                <div class="feature-card">
+                    <h3>กิจกรรมวันวิชาการ</h3>
+                    <p>กิจกรรมแสดงผลงานทางวิชาการของนักเรียนและคณาจารย์ประจำปีการศึกษา 2025 จัดขึ้นระหว่างวันที่ 10-12 มีนาคม 2525</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>เปิดรับสมัครนักศึกษาใหม่</h3>
+                    <p>เปิดรับสมัครนักศึกษาใหม่ประจำปีการศึกษา 2025 ตั้งแต่วันที่ 1 เมษายน - 30 พฤษภาคม 2525</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>ความร่วมมือกับมหาวิทยาลัยชั้นนำ</h3>
+                    <p>สถานศึกษาของเราได้มีการลงนามความร่วมมือทางวิชาการกับมหาวิทยาลัยชั้นนำทั้งในและต่างประเทศ</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- หน้าข้อมูลผู้บริหาร -->
+        <div id="administrators" class="page-content" style="display: none;">
+            <h2 class="page-title">ข้อมูลผู้บริหารสถานศึกษา</h2>
+            
+            <div class="person-cards">
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="ผู้อำนวยการ">
+                    <h3>ดร.สมชาย ใจดี</h3>
+                    <p>ผู้อำนวยการสถานศึกษา</p>
+                    <p>ปริญญาเอกด้านการบริหารการศึกษา</p>
+                    <p>ประสบการณ์การบริหาร 20 ปี</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายวิชาการ">
+                    <h3>ดร.สมหญิง รักษ์ดี</h3>
+                    <p>รองผู้อำนวยการฝ่ายวิชาการ</p>
+                    <p>ปริญญาเอกด้านหลักสูตรและการสอน</p>
+                    <p>ประสบการณ์การสอน 15 ปี</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายบริหาร">
+                    <h3>นายวิชัย ก้าวหน้า</h3>
+                    <p>รองผู้อำนวยการฝ่ายบริหาร</p>
+                    <p>ปริญญาโทด้านบริหารธุรกิจ</p>
+                    <p>ประสบการณ์การบริหาร 12 ปี</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายกิจการนักศึกษา">
+                    <h3>นางสาวเมตตา อารีย์</h3>
+                    <p>รองผู้อำนวยการฝ่ายกิจการนักศึกษา</p>
+                    <p>ปริญญาโทด้านจิตวิทยาการศึกษา</p>
+                    <p>ประสบการณ์การทำงาน 10 ปี</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- หน้าข้อมูลบุคลากร -->
+        <div id="staff" class="page-content" style="display: none;">
+            <h2 class="page-title">ข้อมูลบุคลากร</h2>
+            
+            <div class="person-cards">
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาวิทยาศาสตร์">
+                    <h3>ดร.วิทยา ค้นคว้า</h3>
+                    <p>หัวหน้าสาขาวิทยาศาสตร์</p>
+                    <p>ปริญญาเอกด้านเคมี</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาคณิตศาสตร์">
+                    <h3>ผศ.คำนวณ แม่นยำ</h3>
+                    <p>หัวหน้าสาขาคณิตศาสตร์</p>
+                    <p>ปริญญาโทด้านคณิตศาสตร์ประยุกต์</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาภาษา">
+                    <h3>อ.พูดดี มีความรู้</h3>
+                    <p>หัวหน้าสาขาภาษา</p>
+                    <p>ปริญญาโทด้านภาษาศาสตร์</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="หัวหน้าสาขาเทคโนโลยี">
+                    <h3>อ.เทคโน ล้ำสมัย</h3>
+                    <p>หัวหน้าสาขาเทคโนโลยีสารสนเทศ</p>
+                    <p>ปริญญาโทด้านวิทยาการคอมพิวเตอร์</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายทะเบียน">
+                    <h3>นางบันทึก เรียบร้อย</h3>
+                    <p>หัวหน้าฝ่ายทะเบียน</p>
+                    <p>ปริญญาตรีด้านบริหาร</p>
+                </div>
+                
+                <div class="person-card">
+                    <img src="/api/placeholder/150/150" alt="เจ้าหน้าที่ฝ่ายการเงิน">
+                    <h3>นางสาวเก็บเงิน มั่งมี</h3>
+                    <p>หัวหน้าฝ่ายการเงิน</p>
+                    <p>ปริญญาตรีด้านการบัญชี</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- หน้าข้อมูลนักเรียน/นักศึกษา -->
+        <div id="students" class="page-content" style="display: none;">
+            <h2 class="page-title">ข้อมูลนักเรียน/นักศึกษา</h2>
+            
+            <div class="program-card">
+                <h3>จำนวนนักศึกษาแยกตามสาขา (ปีการศึกษา 2025)</h3>
+                <p>ปัจจุบันสถานศึกษาของเรามีนักศึกษาทั้งหมด 2,850 คน แบ่งตามสาขาวิชาดังนี้</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">วิทยาศาสตร์และเทคโนโลยี: 720 คน</div>
+                    <div class="detail-item">การบัญชี: 450 คน</div>
+                    <div class="detail-item">การท่องเที่ยวและการโรงแรม: 380 คน</div>
+                    <div class="detail-item">คอมพิวเตอร์ธุรกิจ: 520 คน</div>
+                    <div class="detail-item">ช่างอุตสาหกรรม: 610 คน</div>
+                    <div class="detail-item">ศิลปกรรม: 170 คน</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>กิจกรรมนักศึกษา</h3>
+                <p>สถานศึกษาของเราส่งเสริมให้นักศึกษาได้พัฒนาทักษะนอกห้องเรียนผ่านชมรมและกิจกรรมต่างๆ</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ชมรมคอมพิวเตอร์</div>
+                    <div class="detail-item">ชมรมภาษาอังกฤษ</div>
+                    <div class="detail-item">ชมรมอาสาพัฒนา</div>
+                    <div class="detail-item">ชมรมดนตรี</div>
+                    <div class="detail-item">ชมรมกีฬา</div>
+                    <div class="detail-item">ชมรมศิลปวัฒนธรรม</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>ผลงานและรางวัล</h3>
+                <p>นักศึกษาของเราได้รับรางวัลจากการแข่งขันในระดับต่างๆ ดังนี้</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">รางวัลชนะเลิศการแข่งขันทักษะวิชาชีพระดับประเทศ</div>
+                    <div class="detail-item">รางวัลรองชนะเลิศการประกวดโครงงานวิทยาศาสตร์</div>
+                    <div class="detail-item">รางวัลชมเชยการแข่งขันตอบปัญหาวิชาการ</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- หน้าสาขาวิชาที่เปิดสอน -->
+        <div id="programs" class="page-content" style="display: none;">
+            <h2 class="page-title">สาขาวิชาที่เปิดสอน</h2>
+            
+            <div class="program-card">
+                <h3>สาขาวิชาวิทยาศาสตร์และเทคโนโลยี</h3>
+                <p>หลักสูตรที่มุ่งเน้นการเรียนรู้ด้านวิทยาศาสตร์และการประยุกต์ใช้เทคโนโลยีในการแก้ปัญหา</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ระยะเวลาเรียน: 4 ปี</div>
+                    <div class="detail-item">คุณสมบัติผู้สมัคร: ม.6 หรือเทียบเท่า สายวิทย์-คณิต</div>
+                    <div class="detail-item">จำนวนรับ: 120 คน/ปี</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>สาขาวิชาการบัญชี</h3>
+                <p>หลักสูตรที่เตรียมความพร้อมสำหรับนักบัญชีมืออาชีพ เน้นการปฏิบัติงานจริงและสอดคล้องกับมาตรฐานวิชาชีพ</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ระยะเวลาเรียน: 4 ปี</div>
+                    <div class="detail-item">คุณสมบัติผู้สมัคร: ม.6 หรือเทียบเท่า</div>
+                    <div class="detail-item">จำนวนรับ: 80 คน/ปี</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>สาขาวิชาการท่องเที่ยวและการโรงแรม</h3>
+                <p>หลักสูตรที่เตรียมความพร้อมด้านการจัดการท่องเที่ยวและงานบริการโรงแรม เน้นการฝึกปฏิบัติกับสถานประกอบการจริง</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ระยะเวลาเรียน: 4 ปี</div>
+                    <div class="detail-item">คุณสมบัติผู้สมัคร: ม.6 หรือเทียบเท่า</div>
+                    <div class="detail-item">จำนวนรับ: 60 คน/ปี</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>สาขาวิชาคอมพิวเตอร์ธุรกิจ</h3>
+                <p>หลักสูตรที่บูรณาการความรู้ด้านคอมพิวเตอร์และการจัดการธุรกิจ มุ่งผลิตบัณฑิตที่สามารถประยุกต์ใช้เทคโนโลยีในการบริหารจัดการ</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ระยะเวลาเรียน: 4 ปี</div>
+                    <div class="detail-item">คุณสมบัติผู้สมัคร: ม.6 หรือเทียบเท่า</div>
+                    <div class="detail-item">จำนวนรับ: 100 คน/ปี</div>
+                </div>
+            </div>
+            
+            <div class="program-card">
+                <h3>สาขาวิชาช่างอุตสาหกรรม</h3>
+                <p>หลักสูตรที่มุ่งเน้นการผลิตช่างเทคนิคและวิศวกรที่มีความรู้และทักษะในงานอุตสาหกรรม</p>
+                
+                <div class="program-details">
+                    <div class="detail-item">ระยะเวลาเรียน: 4 ปี</div>
+                    <div class="detail-item">คุณสมบัติผู้สมัคร: ม.6 หรือเทียบเท่า สายวิทย์-คณิต</div>
+                    <div class="detail-item">จำนวนรับ: 120 คน/ปี</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- ส่วนท้ายของทุกหน้า -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ติดต่อเรา</h3>
+                <p>123 ถนนการศึกษา ตำบลวิชาการ</p>
+                <p>อำเภอปัญญา จังหวัดความรู้ 10000</p>
+                <p>โทรศัพท์: 02-123-4567</p>
+                <p>อีเมล: info@ourschool.ac.th</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>เมนูลัด</h3>
+                <ul>
+                    <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>ติดตามเรา</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 สถานศึกษาของเรา - สงวนลิขสิทธิ์</p>
+        </div>
+    </footer>
+    
+    <script

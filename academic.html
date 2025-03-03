@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สาขาวิชาที่เปิดสอน</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+         /* ส่วนหัว */
+         header {
+            background-color: #00274c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .faculty-section {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faculty-title {
+            font-size: 1.8rem;
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .department {
+            margin-bottom: 30px;
+        }
+        
+        .department-title {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .program {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .program:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .program-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .program-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .program-tag {
+            background-color: #e0f0ff;
+            color: #0056b3;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .program-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #003d7a;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0056b3;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .faculty-title {
+                font-size: 1.5rem;
+            }
+            
+            .department-title {
+                font-size: 1.3rem;
+            }
+            
+            .program-title {
+                font-size: 1.1rem;
+            }
+        }
+        .school-name {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .school-slogan {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        
+        .program-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .program-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .program-tag {
+            background-color: #e0f0ff;
+            color: #0056b3;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .program-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #003d7a;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0056b3;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .faculty-title {
+                font-size: 1.5rem;
+            }
+            
+            .department-title {
+                font-size: 1.3rem;
+            }
+            
+            .program-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>       
+        <div class="container">
+            <h1>สาขาวิชาที่เปิดสอน</h1>
+            <div class="subtitle">ประจำปีการศึกษา 2567</div>
+        </div>
+    </header>
+     <!-- เมนูนำทาง -->
+     <nav>
+        <ul>
+            <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+            <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="faculty-section">
+            <h2 class="faculty-title">คณะวิทยาศาสตร์และเทคโนโลยี</h2>
+            
+            <div class="department">
+                <h3 class="department-title">ภาควิชาวิทยาการคอมพิวเตอร์</h3>
+                
+                <div class="program">
+                    <h4 class="program-title">วิทยาการคอมพิวเตอร์</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิทยาการคอมพิวเตอร์มุ่งเน้นให้ผู้เรียนมีความรู้ทั้งภาคทฤษฎีและภาคปฏิบัติ สามารถประยุกต์ใช้องค์ความรู้ที่ศึกษาเพื่อการประกอบอาชีพได้ และมีความสามารถในการพัฒนาตนเองให้เข้ากับลักษณะงานทั้งด้านวิชาการและวิชาชีพ
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+                
+                <div class="program">
+                    <h4 class="program-title">วิศวกรรมซอฟต์แวร์</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิศวกรรมซอฟต์แวร์มุ่งผลิตบัณฑิตที่มีความรู้ความสามารถในการพัฒนาซอฟต์แวร์ การออกแบบและวิเคราะห์ระบบ ทักษะในการบริหารโครงการ รวมถึงการทดสอบซอฟต์แวร์ตามมาตรฐานอุตสาหกรรม
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+            
+            <div class="department">
+                <h3 class="department-title">ภาควิชาคณิตศาสตร์</h3>
+                
+                <div class="program">
+                    <h4 class="program-title">คณิตศาสตร์</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรคณิตศาสตร์มุ่งเน้นผลิตบัณฑิตที่มีความรู้ ความเข้าใจในหลักการทางคณิตศาสตร์ สามารถคิดวิเคราะห์อย่างเป็นระบบ และนำความรู้ไปประยุกต์ใช้ในการประกอบอาชีพได้อย่างมีประสิทธิภาพ
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+                
+                <div class="program">
+                    <h4 class="program-title">สถิติและวิทยาการข้อมูล</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรสถิติและวิทยาการข้อมูลมุ่งเน้นให้ผู้เรียนมีความรู้ด้านสถิติและการวิเคราะห์ข้อมูล สามารถประยุกต์ใช้ความรู้ในการวิเคราะห์ข้อมูลขนาดใหญ่ และมีทักษะในการนำเสนอข้อมูลอย่างมีประสิทธิภาพ
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faculty-section">
+            <h2 class="faculty-title">คณะวิศวกรรมศาสตร์</h2>
+            
+            <div class="department">
+                <h3 class="department-title">ภาควิชาวิศวกรรมคอมพิวเตอร์</h3>
+                
+                <div class="program">
+                    <h4 class="program-title">วิศวกรรมคอมพิวเตอร์</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิศวกรรมคอมพิวเตอร์มุ่งเน้นให้ผู้เรียนมีความรู้ทั้งด้านฮาร์ดแวร์และซอฟต์แวร์ การออกแบบและพัฒนาระบบคอมพิวเตอร์ ระบบเครือข่าย และระบบฝังตัว เพื่อตอบสนองความต้องการของภาคอุตสาหกรรมและสังคมดิจิทัล
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+                
+                <div class="program">
+                    <h4 class="program-title">วิศวกรรมปัญญาประดิษฐ์</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิศวกรรมปัญญาประดิษฐ์มุ่งผลิตบัณฑิตที่มีความรู้ความสามารถในการพัฒนาระบบอัจฉริยะ เทคโนโลยีการเรียนรู้ของเครื่อง และการประยุกต์ใช้ปัญญาประดิษฐ์ในการแก้ปัญหาทางวิศวกรรมและอุตสาหกรรม
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+            
+            <div class="department">
+                <h3 class="department-title">ภาควิชาวิศวกรรมไฟฟ้า</h3>
+                
+                <div class="program">
+                    <h4 class="program-title">วิศวกรรมไฟฟ้า</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิศวกรรมไฟฟ้ามุ่งเน้นให้ผู้เรียนมีความรู้ทั้งภาคทฤษฎีและปฏิบัติในด้านไฟฟ้ากำลัง อิเล็กทรอนิกส์ การสื่อสาร และการควบคุม สามารถประยุกต์ใช้เทคโนโลยีในการออกแบบและพัฒนาระบบไฟฟ้าได้อย่างมีประสิทธิภาพ
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+                
+                <div class="program">
+                    <h4 class="program-title">วิศวกรรมโทรคมนาคม</h4>
+                    <div class="program-details">
+                        <span class="program-tag">ปริญญาตรี</span>
+                        <span class="program-tag">4 ปี</span>
+                        <span class="program-tag">ภาคปกติ</span>
+                    </div>
+                    <p class="program-description">
+                        หลักสูตรวิศวกรรมโทรคมนาคมมุ่งผลิตบัณฑิตที่มีความรู้ความสามารถในการออกแบบและพัฒนาระบบสื่อสารและโครงข่ายโทรคมนาคมสมัยใหม่ รวมถึงเทคโนโลยีไร้สายและระบบเครือข่ายคอมพิวเตอร์
+                    </p>
+                    <a href="#" class="cta-button">ดูรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2567 สงวนลิขสิทธิ์ โดย มหาวิทยาลัยแห่งประเทศไทย</p>
+        </div>
+    </footer>
+</body>
+</html>

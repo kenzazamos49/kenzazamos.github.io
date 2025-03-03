@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลผู้บริหาร - สถานศึกษาของเรา</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* ส่วนหัว */
+        header {
+            background-color: #00274c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .school-name {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .school-slogan {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        
+        /* ส่วนเนื้อหา */
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            min-height: 500px;
+        }
+        
+        .page-title {
+            color: #00274c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcb05;
+        }
+        
+        /* รายละเอียดข้อมูล */
+        .person-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .person-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .person-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid #ffcb05;
+        }
+        
+        .person-card h3 {
+            color: #00274c;
+            margin-bottom: 5px;
+        }
+        
+        .person-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .admin-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .admin-quote {
+            font-style: italic;
+            color: #555;
+            border-left: 4px solid #ffcb05;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        
+        /* ส่วนท้าย */
+        footer {
+            background-color: #00274c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #ffcb05;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #ffcb05;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* รองรับอุปกรณ์มือถือ */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ส่วนหัวของทุกหน้า -->
+    <header>
+        <h1 class="school-name">สถานศึกษาของเรา</h1>
+        <p class="school-slogan">มุ่งมั่นสู่ความเป็นเลิศทางวิชาการและคุณธรรม</p>
+    </header>
+    
+    <!-- เมนูนำทาง -->
+    <nav>
+        <ul>
+            <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+        </ul>
+    </nav>
+    
+    <!-- ส่วนเนื้อหา -->
+    <main>
+        <h2 class="page-title">ข้อมูลผู้บริหารสถานศึกษา</h2>
+        
+        <div class="admin-description">
+            <p>ผู้บริหารของสถานศึกษาเรามีความมุ่งมั่นในการพัฒนาการศึกษาและสร้างโอกาสทางการเรียนรู้ให้แก่นักศึกษาทุกคน ด้วยประสบการณ์และความเชี่ยวชาญที่หลากหลาย คณะผู้บริหารของเรามุ่งสร้างสรรค์หลักสูตรที่ทันสมัย เน้นการพัฒนาทักษะที่จำเป็นในศตวรรษที่ 21 และส่งเสริมให้นักศึกษามีคุณธรรม จริยธรรม ควบคู่ไปกับความเป็นเลิศทางวิชาการ</p>
+            
+            <div class="admin-quote">
+                "การศึกษาที่ดีไม่เพียงแต่สร้างนักวิชาการที่เก่ง แต่ต้องสร้างคนดีที่มีความรับผิดชอบต่อสังคมด้วย" - ปรัชญาการศึกษาของสถานศึกษาเรา
+            </div>
+        </div>
+        
+        <div class="person-cards">
+            <div class="person-card">
+                <img src="/api/placeholder/150/150" alt="ผู้อำนวยการ">
+                <h3>ดร.สมชาย ใจดี</h3>
+                <p>ผู้อำนวยการสถานศึกษา</p>
+                <p>ปริญญาเอกด้านการบริหารการศึกษา</p>
+                <p>ประสบการณ์การบริหาร 20 ปี</p>
+                <p><a href="mailto:somchai@school.ac.th">somchai@school.ac.th</a></p>
+            </div>
+            
+            <div class="person-card">
+                <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายวิชาการ">
+                <h3>ดร.สมหญิง รักษ์ดี</h3>
+                <p>รองผู้อำนวยการฝ่ายวิชาการ</p>
+                <p>ปริญญาเอกด้านหลักสูตรและการสอน</p>
+                <p>ประสบการณ์การสอน 15 ปี</p>
+                <p><a href="mailto:somying@school.ac.th">somying@school.ac.th</a></p>
+            </div>
+            
+            <div class="person-card">
+                <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายบริหาร">
+                <h3>นายวิชัย ก้าวหน้า</h3>
+                <p>รองผู้อำนวยการฝ่ายบริหาร</p>
+                <p>ปริญญาโทด้านบริหารธุรกิจ</p>
+                <p>ประสบการณ์การบริหาร 12 ปี</p>
+                <p><a href="mailto:wichai@school.ac.th">wichai@school.ac.th</a></p>
+            </div>
+            
+            <div class="person-card">
+                <img src="/api/placeholder/150/150" alt="รองผู้อำนวยการฝ่ายกิจการนักศึกษา">
+                <h3>นางสาวเมตตา อารีย์</h3>
+                <p>รองผู้อำนวยการฝ่ายกิจการนักศึกษา</p>
+                <p>ปริญญาโทด้านจิตวิทยาการศึกษา</p>
+                <p>ประสบการณ์การทำงาน 10 ปี</p>
+                <p><a href="mailto:metta@school.ac.th">metta@school.ac.th</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- ส่วนท้ายของทุกหน้า -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ติดต่อเรา</h3>
+                <p>123 ถนนการศึกษา ตำบลวิชาการ</p>
+                <p>อำเภอปัญญา จังหวัดความรู้ 10000</p>
+                <p>โทรศัพท์: <a href="tel:0201234567">02-123-4567</a></p>
+                <p>อีเมล: <a href="mailto:info@school.ac.th">info@school.ac.th</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>เมนูลัด</h3>
+                <ul>
+                    <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>ติดตามเรา</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.youtube.com/" target="_blank">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 สถานศึกษาของเรา - สงวนลิขสิทธิ์</p>
+        </div>
+    </footer>
+</body>
+</html>

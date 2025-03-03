@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบข้อมูลนักเรียน/นักศึกษา</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ส่วนหัว */
+        header {
+            background-color: #00274c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .school-name {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .school-slogan {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        /* เมนูนำทาง */
+        nav {
+            background-color: #ffcb05;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #00274c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00274c;
+            color: #ffcb05;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e6e6e6;
+            padding-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e6f7ff;
+        }
+        
+        .search-box {
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .search-box button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .search-box button:hover {
+            background-color: #003d82;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filters select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .pagination button:hover {
+            background-color: #003d82;
+        }
+        
+        .pagination button.active {
+            background-color: #003366;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-buttons button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .view-button {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        .edit-button {
+            background-color: #ffc107;
+            color: black;
+        }
+        
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .close {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .save-button {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .cancel-button {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>ระบบข้อมูลนักเรียน/นักศึกษา</h1>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="file:///C:/Users/CMT/Desktop/school-website%20(1).html" onclick="showPage('home')">หน้าหลัก</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/administrators-page.html" onclick="showPage('administrators')">ข้อมูลผู้บริหาร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/staff-page.html" onclick="showPage('staff')">ข้อมูลบุคลากร</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/student-info-page.html" onclick="showPage('students')">ข้อมูลนักเรียน/นักศึกษา</a></li>
+                    <li><a href="file:///C:/Users/CMT/Desktop/academic-programs-page.html" onclick="showPage('programs')">สาขาวิชาที่เปิดสอน</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="card">
+            <h2>ข้อมูลนักเรียน/นักศึกษา</h2>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="ค้นหาด้วยรหัสนักศึกษา ชื่อ หรือสาขาวิชา">
+                <button id="search-button">ค้นหา</button>
+            </div>
+            
+            <div class="filters">
+                <select id="department-filter">
+                    <option value="">ทุกสาขาวิชา</option>
+                    <option value="it">เทคโนโลยีสารสนเทศ</option>
+                    <option value="accounting">การบัญชี</option>
+                    <option value="marketing">การตลาด</option>
+                    <option value="electronics">อิเล็กทรอนิกส์</option>
+                    <option value="automotive">เทคนิคยานยนต์</option>
+                </select>
+                
+                <select id="year-filter">
+                    <option value="">ทุกชั้นปี</option>
+                    <option value="1">ปี 1</option>
+                    <option value="2">ปี 2</option>
+                    <option value="3">ปี 3</option>
+                    <option value="4">ปี 4</option>
+                </select>
+                
+                <select id="status-filter">
+                    <option value="">ทุกสถานะ</option>
+                    <option value="active">กำลังศึกษา</option>
+                    <option value="graduate">จบการศึกษา</option>
+                    <option value="leave">ลาพัก</option>
+                    <option value="withdraw">พ้นสภาพ</option>
+                </select>
+            </div>
+            
+            <table id="students-table">
+                <thead>
+                    <tr>
+                        <th>รหัสนักศึกษา</th>
+                        <th>ชื่อ-นามสกุล</th>
+                        <th>สาขาวิชา</th>
+                        <th>ชั้นปี</th>
+                        <th>สถานะ</th>
+                        <th>การจัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>651001</td>
+                        <td>นายสมชาย ใจดี</td>
+                        <td>เทคโนโลยีสารสนเทศ</td>
+                        <td>2</td>
+                        <td>กำลังศึกษา</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="view-button" onclick="viewStudent('651001')">ดู</button>
+                                <button class="edit-button" onclick="editStudent('651001')">แก้ไข</button>
+                                <button class="delete-button" onclick="deleteStudent('651001')">ลบ</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>651002</td>
+                        <td>นางสาวสมหญิง รักเรียน</td>
+                        <td>การบัญชี</td>
+                        <td>2</td>
+                        <td>กำลังศึกษา</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="view-button" onclick="viewStudent('651002')">ดู</button>
+                                <button class="edit-button" onclick="editStudent('651002')">แก้ไข</button>
+                                <button class="delete-button" onclick="deleteStudent('651002')">ลบ</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>651003</td>
+                        <td>นายวิชัย วิชาดี</td>
+                        <td>เทคนิคยานยนต์</td>
+                        <td>2</td>
+                        <td>กำลังศึกษา</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="view-button" onclick="viewStudent('651003')">ดู</button>
+                                <button class="edit-button" onclick="editStudent('651003')">แก้ไข</button>
+                                <button class="delete-button" onclick="deleteStudent('651003')">ลบ</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>651004</td>
+                        <td>นางสาวนภา ฟ้าใส</td>
+                        <td>การตลาด</td>
+                        <td>2</td>
+                        <td>ลาพัก</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="view-button" onclick="viewStudent('651004')">ดู</button>
+                                <button class="edit-button" onclick="editStudent('651004')">แก้ไข</button>
+                                <button class="delete-button" onclick="deleteStudent('651004')">ลบ</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>641001</td>
+                        <td>นายภูมิ ภูเขา</td>
+                        <td>อิเล็กทรอนิกส์</td>
+                        <td>3</td>
+                        <td>กำลังศึกษา</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="view-button" onclick="viewStudent('641001')">ดู</button>
+                                <button class="edit-button" onclick="editStudent('641001')">แก้ไข</button>
+                                <button class="delete-button" onclick="deleteStudent('641001')">ลบ</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button>ก่อนหน้า</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>ถัดไป</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal สำหรับดูข้อมูลนักศึกษา -->
+    <div id="view-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>ข้อมูลนักศึกษา</h2>
+                <span class="close" onclick="closeModal('view-modal')">&times;</span>
+            </div>
+            <div id="student-details">
+                <!-- ข้อมูลนักศึกษาจะถูกเพิ่มด้วย JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal สำหรับแก้ไขข้อมูลนักศึกษา -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>แก้ไขข้อมูลนักศึกษา</h2>
+                <span class="close" onclick="closeModal('edit-modal')">&times;</span>
+            </div>
+            <form id="edit-student-form">
+                <div class="form-group">
+                    <label for="student-id">รหัสนักศึกษา</label>
+                    <input type="text" id="student-id" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="student-name">ชื่อ-นามสกุล</label>
+                    <input type="text" id="student-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-department">สาขาวิชา</label>
+                    <select id="student-department" required>
+                        <option value="it">เทคโนโลยีสารสนเทศ</option>
+                        <option value="accounting">การบัญชี</option>
+                        <option value="marketing">การตลาด</option>
+                        <option value="electronics">อิเล็กทรอนิกส์</option>
+                        <option value="automotive">เทคนิคยานยนต์</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="student-year">ชั้นปี</label>
+                    <select id="student-year" required>
+                        <option value="1">ปี 1</option>
+                        <option value="2">ปี 2</option>
+                        <option value="3">ปี 3</option>
+                        <option value="4">ปี 4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="student-status">สถานะ</label>
+                    <select id="student-status" required>
+                        <option value="active">กำลังศึกษา</option>
+                        <option value="graduate">จบการศึกษา</option>
+                        <option value="leave">ลาพัก</option>
+                        <option value="withdraw">พ้นสภาพ</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-button" onclick="closeModal('edit-modal')">ยกเลิก</button>
+                    <button type="submit" class="save-button">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // ข้อมูลนักศึกษา (จำลอง)
+        const studentsData = [
+            {
+                id: '651001',
+                name: 'นายสมชาย ใจดี',
+                department: 'เทคโนโลยีสารสนเทศ',
+                departmentCode: 'it',
+                year: '2',
+                status: 'กำลังศึกษา',
+                statusCode: 'active',
+                address: '123 ถ.สุขุมวิท กรุงเทพฯ 10110',
+                phone: '089-123-4567',
+                email: 'somchai@example.com',
+                gpa: '3.75'
+            },
+            {
+                id: '651002',
+                name: 'นางสาวสมหญิง รักเรียน',
+                department: 'การบัญชี',
+                departmentCode: 'accounting',
+                year: '2',
+                status: 'กำลังศึกษา',
+                statusCode: 'active',
+                address: '456 ถ.พหลโยธิน กรุงเทพฯ 10900',
+                phone: '086-987-6543',
+                email: 'somying@example.com',
+                gpa: '3.89'
+            },
+            {
+                id: '651003',
+                name: 'นายวิชัย วิชาดี',
+                department: 'เทคนิคยานยนต์',
+                departmentCode: 'automotive',
+                year: '2',
+                status: 'กำลังศึกษา',
+                statusCode: 'active',
+                address: '789 ถ.รามคำแหง กรุงเทพฯ 10240',
+                phone: '081-234-5678',
+                email: 'wichai@example.com',
+                gpa: '3.25'
+            },
+            {
+                id: '651004',
+                name: 'นางสาวนภา ฟ้าใส',
+                department: 'การตลาด',
+                departmentCode: 'marketing',
+                year: '2',
+                status: 'ลาพัก',
+                statusCode: 'leave',
+                address: '101 ถ.เพชรเกษม กรุงเทพฯ 10160',
+                phone: '083-345-6789',
+                email: 'napha@example.com',
+                gpa: '3.42'
+            },
+            {
+                id: '641001',
+                name: 'นายภูมิ ภูเขา',
+                department: 'อิเล็กทรอนิกส์',
+                departmentCode: 'electronics',
+                year: '3',
+                status: 'กำลังศึกษา',
+                statusCode: 'active',
+                address: '202 ถ.ลาดพร้าว กรุงเทพฯ 10230',
+                phone: '085-456-7890',
+                email: 'phumi@example.com',
+                gpa: '3.56'
+            }
+        ];
+        
+        // ฟังก์ชัน: ดูข้อมูลนักศึกษา
+        function viewStudent(studentId) {
+            const student = studentsData.find(s => s.id === studentId);
+            if (student) {
+                const detailsHTML = `
+                    <div class="form-group">
+                        <label>รหัสนักศึกษา</label>
+                        <p>${student.id}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>ชื่อ-นามสกุล</label>
+                        <p>${student.name}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>สาขาวิชา</label>
+                        <p>${student.department}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>ชั้นปี</label>
+                        <p>${student.year}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>สถานะ</label>
+                        <p>${student.status}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>ที่อยู่</label>
+                        <p>${student.address}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>เบอร์โทรศัพท์</label>
+                        <p>${student.phone}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>อีเมล</label>
+                        <p>${student.email}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>เกรดเฉลี่ย</label>
+                        <p>${student.gpa}</p>
+                    </div>
+                `;
+                document.getElementById('student-details').innerHTML = detailsHTML;
+                openModal('view-modal');
+            }
+        }
+        
+        // ฟังก์ชัน: แก้ไขข้อมูลนักศึกษา
+        function editStudent(studentId) {
+            const student = studentsData.find(s => s.id === studentId);
+            if (student) {
+                document.getElementById('student-id').value = student.id;
+                document.getElementById('student-name').value = student.name;
+                document.getElementById('student-department').value = student.departmentCode;
+                document.getElementById('student-year').value = student.year;
+                document.getElementById('student-status').value = student.statusCode;
+                openModal('edit-modal');
+            }
+        }
+        
+        // ฟังก์ชัน: ลบข้อมูลนักศึกษา
+        function deleteStudent(studentId) {
+            if (confirm(`ยืนยันการลบข้อมูลนักศึกษารหัส ${studentId} หรือไม่?`)) {
+                alert(`ลบข้อมูลนักศึกษารหัส ${studentId} เรียบร้อยแล้ว`);
+                // ในระบบจริงจะต้องส่งคำขอไปยัง API เพื่อลบข้อมูล
+            }
+        }
+        
+        // ฟังก์ชัน: เปิด Modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        // ฟังก์ชัน: ปิด Modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // เพิ่ม Event Listener สำหรับฟอร์มแก้ไขข้อมูล
+        document.getElementById('edit-student-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const studentId = document.getElementById('student-id').value;
+            alert(`บันทึกข้อมูลนักศึกษารหัส ${studentId} เรียบร้อยแล้ว`);
+            // ในระบบจริงจะต้องส่งข้อมูลไปยัง API เพื่ออัปเดตข้อมูล
+            closeModal('edit-modal');
+        });
+        
+        // เพิ่ม Event Listener สำหรับการค้นหา
+        document.getElementById('search-button').addEventListener('click', function() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            alert(`ค้นหา: ${searchTerm}`);
+            // ในระบบจริงจะต้องส่งคำขอไปยัง API เพื่อค้นหาข้อมูล
+        });
+        
+        // ปิด Modal เมื่อคลิกนอกพื้นที่ Modal
+        window.addEventListener('click', function(e) {
+            if (e.target.className === 'modal') {
+                e.target.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
